@@ -1,5 +1,5 @@
 
 $("#bar").css({
-  "width" : "100%",
-  "height": "8%"
+  "width" : window.innerWidth + "px",
+  "height": (window.innerHeight * 0.08) + "px"
 });
