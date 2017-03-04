@@ -13,8 +13,10 @@ function createHeader(options) {
         var className = options["class"] || "header_button";
 
         var $button = $("<div></div>", { "class": "header_button", "id": className + "_" + name });
-        var $text = $("<span></span>");
+        var $text = $("<div></div>");
+        var $renderedText = $("<div></div>", { "class": "remove" });
         $text.html(nameO);
+        $renderedText.html(nameO);
         if(options["class"]) {
             $button.addClass(className);
         }
@@ -22,12 +24,20 @@ function createHeader(options) {
             "width": block_width + "px",
             "height": height + "px"
         });
+        $renderedText.css({
+            "font-family": "'Roboto Condensed', sans-serif",
+            "font-size": ($button.height() * 0.35) + "px",
+            "visiblity:": "hidden"
+        });
+        $(document.body).append($renderedText);
         $text.css({
+            "font-family": "'Roboto Condensed', sans-serif",
+            "font-size": ($button.height() * 0.35) + "px",
             "position": "absolute",
-            "left": (block_width - $text.width())/2,
-            //"left": "0",
+            "left": (block_width - $renderedText.width())/2 + "px",
             "color": "white"
         });
+        $renderedText.remove();
 
         if(options["link"]) {
             var path = options["link"];

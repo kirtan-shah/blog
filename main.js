@@ -7,9 +7,11 @@ $(document).ready(function() {
     */
     var header = createHeader({
         width: window.innerWidth,
-        height: window.innerHeight * 0.12,
+        height: window.innerHeight * 0.08,
         link: "/",
         items: ["About", "Projects", "Programs", "Blog"]
     });
+
+    console.log(header);
     $(document.body).append(header);
 });
