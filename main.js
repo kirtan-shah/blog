@@ -11,7 +11,5 @@ $(document).ready(function() {
         link: "/",
         items: ["About", "Projects", "Programs", "Blog"]
     });
-
-    console.log(header);
     $(document.body).append(header);
 });

@@ -12,7 +12,7 @@ function createHeader(options) {
 
         var className = options["class"] || "header_button";
 
-        var $button = $("<div></div>", { "class": "header_button", "id": className + "_" + name });
+        var $button = $("<div></div>", { "class": "header_button", "id": className + "_" + name, "name": name });
         var $text = $("<div></div>");
         var $renderedText = $("<div></div>", { "class": "remove" });
         $text.html(nameO);
@@ -40,17 +40,16 @@ function createHeader(options) {
         $renderedText.remove();
 
         if(options["link"]) {
-            var path = options["link"];
-            if(path != "/") {
-                path += "/";
-            }
-            var $a = $("<a class='header_link' href='" + path + name + "'></a>");
-            $text.append($a);
-            $button.append($text);
+            var loc = window.location.href;
+            loc = loc.substring(0, loc.lastIndexOf('/')) + options["link"];
+            if(loc.charAt(loc.length - 1) != '/')
+                loc += '/';
+            $button.on("click", function() {
+                window.open(loc + this.getAttribute("name") + '/');
+            });
         }
-        else {
-            $button.append($text);
-        }
+
+        $button.append($text);
         $header.append($button);
     }
     return $header;

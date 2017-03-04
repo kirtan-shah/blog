@@ -40,3 +40,7 @@
     display: inline-block;
     font-family: 'Roboto Condensed', sans-serif;
 }
+
+.header_button > div > a {
+    display: inline-block;
+}
