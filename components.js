@@ -34,6 +34,7 @@ function createHeader(options) {
             "font-family": "'Roboto Condensed', sans-serif",
             "font-size": ($button.height() * 0.35) + "px",
             "position": "absolute",
+            "top": (height - $renderedText.height())/2 - 4 + "px", //extra 4px from inline-block
             "left": (block_width - $renderedText.width())/2 + "px",
             "color": "white"
         });
