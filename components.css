@@ -6,34 +6,27 @@
 .header_button {
     display: inline-block;
     position: relative;
-    background-image: -webkit-gradient(
-    	linear,
-    	left bottom,
-    	left top,
-    	color-stop(0, #1A4FD5),
-    	color-stop(1, #0191FF)
-    );
-    background-image: -o-linear-gradient(top, #1A4FD5 0%, #0191FF 100%);
-    background-image: -moz-linear-gradient(top, #1A4FD5 0%, #0191FF 100%);
-    background-image: -webkit-linear-gradient(top, #1A4FD5 0%, #0191FF 100%);
-    background-image: -ms-linear-gradient(top, #1A4FD5 0%, #0191FF 100%);
-    background-image: linear-gradient(to top, #1A4FD5 0%, #0191FF 100%);
+    background-image: -webkit-linear-gradient(#0191FF, #1A4FD5);
+    background-image: linear-gradient(#0191FF, #1A4FD5);
+    z-index: 100;
 }
-.header_button:hover {
-    display: inline-block;
-    position: relative;
-    background-image: -webkit-gradient(
-    	linear,
-    	left bottom,
-    	left top,
-    	color-stop(0, #173C91),
-    	color-stop(1, #0064AB)
-    );
-    background-image: -o-linear-gradient(top, #173C91 0%, #0064AB 100%);
-    background-image: -moz-linear-gradient(top, #173C91 0%, #0064AB 100%);
-    background-image: -webkit-linear-gradient(top, #173C91 0%, #0064AB 100%);
-    background-image: -ms-linear-gradient(top, #173C91 0%, #0064AB 100%);
-    background-image: linear-gradient(to top, #173C91 0%, #0064AB 100%);
+.header_button:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: -100;
+    -webkit-transition: opacity 400ms ease-in-out;
+    transition: opacity 400ms ease-in-out;
+    background-image: -webkit-linear-gradient(#0064AB, #173C91);
+    background-image: linear-gradient(#0064AB, #173C91);
+}
+.header_button:hover:before {
+    opacity: 1;
 }
 
 .header_button > div {
