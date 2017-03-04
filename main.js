@@ -1,11 +1,15 @@
 $(document).ready(function() {
-  $("#bar").css({
-    "width" : window.innerWidth + "px",
-    "height" : (window.innerHeight * 0.17) + "px"
-  });
-  $("#leftmenu").css({
-     "top": $("#bar").height() + "px",
-     "width" : (window.innerWidth * 0.15) + "px",
-     "height" : (window.innerHeight - $("#bar").height()) + "px"
-  });
+    /*
+    $("#bar").css({
+        "width" : window.innerWidth + "px",
+        "height" : (window.innerHeight * 0.12) + "px"
+    });
+    */
+    var header = createHeader({
+        width: window.innerWidth,
+        height: window.innerHeight * 0.12,
+        link: "/",
+        items: ["About", "Projects", "Programs", "Blog"]
+    });
+    $(document.body).append(header);
 });
