@@ -55,3 +55,27 @@ function createHeader(options) {
     }
     return $header;
 }
+
+$.prototype.centerContent = function(horizontal, vertical) {
+    var that = this;
+    this.children().each(function(i, val) {
+        var $val = $(val);
+        $val.css("position", "absolute");
+        if(horizontal)
+            $val.css("left", (that.width() - $val.width())/2 + "px");
+        if(vertical)
+            $val.css("top", (that.height()/2 - 1.5*$val.height()) + "px");
+    });
+    return this;
+}
+
+$.prototype.setBounds = function(x, y, width, height, position) {
+    this.css({
+        "position": position || "absolute",
+        "left": x + "px",
+        "top": y + "px",
+        "width": width + "px",
+        "height": height + "px"
+    });
+    return this;
+}
