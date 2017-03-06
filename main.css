@@ -17,7 +17,19 @@ body {
     transition: 700ms opacity ease;
 }
 #background:hover {
-    opacity: 0.4;
+    /*opacity: 0.4;*/
+}
+
+#background-pic {
+    display: inline-block;
+    position: absolute;
+    background-image: url("images/waterfall.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.15;
+    -webkit-transition: 700ms opacity ease;
+    transition: 700ms opacity ease;
 }
 
 #page {

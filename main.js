@@ -19,6 +19,9 @@ $(document).ready(function() {
     $page.setBounds(0, $header.height(), window.innerWidth, window.innerHeight - $header.height());
     $page.centerContent(true, true);
 
+    var $backgroundPic = $("#background-pic");
+    $backgroundPic.setBounds(0, $header.height(), window.innerWidth, window.innerHeight - $header.height());
+
     var $down = $("#down");
     $down.width(window.innerWidth*0.03);
     $down.css({
