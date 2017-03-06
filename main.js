@@ -2,25 +2,26 @@ $(document).ready(function() {
 
     var $header = createHeader({
         width: window.innerWidth,
-        height: window.innerHeight * 0.08,
+        height: window.innerHeight * 0.09,
         items: ["About", "Projects", "Programs", "Blog"]
     });
     $header.appendTo(document.body);
     $header.children(".header_button").addClass("unselected");
+    $("#header_button_about").addClass("selected").removeClass("unselected");
     $header.children(".header_button").click(function() {
         $header.children(".header_button").removeClass("selected").addClass("unselected");
         $(this).addClass("selected").removeClass("unselected");
     });
 
     var $background = $("#background");
-    $background.setBounds(0, $header.height(), window.innerWidth, window.innerHeight - $header.height());
+    $background.setBounds(0, 0, window.innerWidth, window.innerHeight);
 
     var $page = $("#page");
     $page.setBounds(0, $header.height(), window.innerWidth, window.innerHeight - $header.height());
     $page.centerContent(true, true);
 
     var $backgroundPic = $("#background-pic");
-    $backgroundPic.setBounds(0, $header.height(), window.innerWidth, window.innerHeight - $header.height());
+    $backgroundPic.setBounds(0, 0, window.innerWidth, window.innerHeight);
 
     var $down = $("#down");
     $down.width(window.innerWidth*0.03);

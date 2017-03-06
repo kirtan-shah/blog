@@ -52,11 +52,18 @@ body {
 }
 
 .unselected {
-    background-image: -webkit-linear-gradient(#0191FF, #1A4FD5);
+    opacity: 0.6;
+    /*background-image: -webkit-linear-gradient(#0191FF, #1A4FD5);
     background-image: linear-gradient(#0191FF, #1A4FD5);
+    */
 }
 
 .selected {
+    /*
     background-image: -webkit-linear-gradient(#0064AB, #173C91);
     background-image: linear-gradient(#0064AB, #173C91);
+    */
+    opacity: 0.9;
+    font-weight: bold;
+    margin-left: -2px;
 }
