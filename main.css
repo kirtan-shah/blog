@@ -30,6 +30,7 @@ body {
     opacity: 0.15;
     -webkit-transition: 700ms opacity ease;
     transition: 700ms opacity ease;
+    filter: blur(2px);
 }
 
 #page {
