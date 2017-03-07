@@ -12,16 +12,19 @@ function createHeader(options) {
         var nameO = options["items"][i];
         var name = nameO.toLowerCase();
 
-        var $container = $("<div></div");
+        var $container = $("<div></div", { "class" : "header_button_container" });
         var $text = $("<div></div>", { "class": "header_button", "id": name });
         var $renderedText = $("<div></div>");
         $text.html(nameO);
         $renderedText.html(nameO);
-        /*
-        $button.css({
+
+        $container.css({
+            "left": (block_width+0)*i + "px",
+            "top": "0",
             "width": block_width + "px",
             "height": height + "px"
-        });*/
+        });
+
         $renderedText.css({
             "font-family": "'Roboto Condensed', sans-serif",
             "font-size": (height * 0.35) + "px",
@@ -33,14 +36,15 @@ function createHeader(options) {
             "font-size": (height * 0.35) + "px",
             "position": "absolute",
             "top": (height - $renderedText.height())/2 + "px",
-            "left": block_width*i + (block_width - $renderedText.width())/2 + "px",
+            "left": (block_width - $renderedText.width())/2 + "px",
             "color": "white"
         });
         $renderedText.remove();
 
         //$button.append($text);
         //$header.append($button);
-        $header.append($text);
+        $container.append($text);
+        $header.append($container);
     }
     return $header;
 }

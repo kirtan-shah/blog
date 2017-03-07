@@ -65,5 +65,8 @@ body {
     */
     opacity: 0.9;
     font-weight: bold;
-    margin-left: -2px;
+    background-color: rgba(0, 255, 255, 0.25);
+}
+.selected div {
+    margin-left: -1px;
 }

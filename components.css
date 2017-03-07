@@ -1,7 +1,6 @@
 .header {
     white-space: nowrap;
     overflow: hidden;
-    border-bottom: 2px solid black;
 }
 
 .header_button {
@@ -11,10 +10,6 @@
     cursor: default;
     -webkit-user-select: none;
     user-select: none;
-    -webkit-transition: opacity 500ms linear;
-    transition: opacity 500ms linear;
-    z-index: 100;
-    border-right: 2px solid black;
 }
 /*
 .header_button:before {
@@ -31,10 +26,23 @@
     transition: opacity 400ms ease-in-out;
     border-radius: 4px;
 }*/
-.header_button:hover {
+.header_button_container:hover {
     opacity: 1;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: bold;
-    margin-left: -2px;
+}
+.header_button_container:hover .header_button {
+    margin-left: -1px;
+}
+
+.header_button_container {
+    position: absolute;
+    background-color: rgba(0, 255, 255, 0.1);
+    -webkit-transition: all 400ms ease;
+    transition: all 400ms ease;
+}
+.header_button_container:hover {
+    background-color: rgba(0, 255, 255, 0.25);
 }
 
 .header_button > div > a {

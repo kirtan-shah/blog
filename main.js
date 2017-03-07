@@ -6,10 +6,10 @@ $(document).ready(function() {
         items: ["About", "Projects", "Programs", "Blog"]
     });
     $header.appendTo(document.body);
-    $header.children(".header_button").addClass("unselected");
-    $("#header_button_about").addClass("selected").removeClass("unselected");
-    $header.children(".header_button").click(function() {
-        $header.children(".header_button").removeClass("selected").addClass("unselected");
+    $header.children(".header_button_containerf").addClass("unselected");
+    $("#header_button_about").parent().addClass("selected").removeClass("unselected");
+    $header.children(".header_button_container").click(function() {
+        $header.children(".header_button_container").removeClass("selected").addClass("unselected");
         $(this).addClass("selected").removeClass("unselected");
     });
 
