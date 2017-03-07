@@ -7,7 +7,7 @@ $(document).ready(function() {
     });
     $header.appendTo(document.body);
     $header.children(".header_button_containerf").addClass("unselected");
-    $("#header_button_about").parent().addClass("selected").removeClass("unselected");
+    //$("#header_button_about").parent().addClass("selected").removeClass("unselected");
     $header.children(".header_button_container").click(function() {
         $header.children(".header_button_container").removeClass("selected").addClass("unselected");
         $(this).addClass("selected").removeClass("unselected");
