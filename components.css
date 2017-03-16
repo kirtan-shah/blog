@@ -1,6 +1,7 @@
 .header {
     white-space: nowrap;
     overflow: hidden;
+    z-index: 1000;
 }
 
 .header_button {

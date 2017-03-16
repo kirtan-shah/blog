@@ -1,33 +1,107 @@
-$(document).ready(function() {
 
-    var $header = createHeader({
+(function() {
+
+    var $header;
+    var options = {
         width: window.innerWidth,
         height: window.innerHeight * 0.09,
-        items: ["About", "Projects", "Programs", "Blog"]
+        items: ['About', 'Projects', 'Programs', 'Blog']
+    };
+    var $down;
+    var done = true;
+
+    var create = function() {
+        $header = createHeader(options);
+        $header.appendTo(document.body);
+        $header.children('.header_button_container').addClass('unselected');
+        switchTo($('[name=about]').get(0));
+
+        //$('#header_button_about').parent().addClass('selected').removeClass('unselected');
+        $header.children('.header_button_container').click(function() {
+            switchTo(this);
+        });
+
+        $down = $('#down');
+        $down.click(function() {
+            var index = parseInt($('.selected').attr('index'));
+            index = (index + 1) % 4;
+            var $next = $header.find('[index=' + index + ']');
+            var next = $next.get(0);
+            slideTo(next);
+        });
+    }
+
+    var calculate = function() {
+        options = {
+            width: window.innerWidth,
+            height: window.innerHeight * 0.09,
+            items: ['About', 'Projects', 'Programs', 'Blog'],
+            update: $header
+        };
+        $header = createHeader(options);
+
+        var $background = $('#background');
+        $background.setBounds(0, 0, window.innerWidth, window.innerHeight);
+
+        var $page = $('#page');
+        $page.setBounds(0, $header.height(), window.innerWidth, window.innerHeight - $header.height());
+        $page.centerContent(true, true);
+
+        var $contentPages = $('.content');
+        $contentPages.setBounds(0, 0, window.innerWidth, window.innerHeight - $header.height());
+        $contentPages.centerContent(true, true);
+
+        var $backgroundPic = $('#background-pic');
+        $backgroundPic.setBounds(0, 0, window.innerWidth, window.innerHeight);
+
+        $down.width(window.innerWidth*0.03);
+        $down.css({
+            'position': 'absolute',
+            'left': (window.innerWidth - $down.width())/2 + 'px',
+            'top': (window.innerHeight - $down.height()) - 30 + 'px'
+        });
+
+    }
+
+    function slideTo(el) {
+        var check = setInterval(function() {
+            if(done) {
+                done = false;
+                $header.children('.header_button_container').removeClass('selected').addClass('unselected');
+                $(el).addClass('selected').removeClass('unselected');
+                $('.content').animate({ 'opacity' : '-1', 'top' : -(window.innerHeight - $header.height()) + 'px' }, { duration: 400, queue: false, complete: function() { $('.content').css('top', '0px') } });
+                var $contentPage = $('#' + el.getAttribute('name') + '-content');
+                $contentPage.css('top', (window.innerHeight - $header.height()) + 'px');
+                $contentPage.animate({ 'top' : '0px' }, { duration: 700, queue: false });
+                setTimeout(function() {
+                    $contentPage.animate({ 'opacity' : '1' }, { duration: 700, queue: false });
+                }, 300);
+                $down.animate({ 'top' : $header.height() - $down.height() + 'px' }, { duration: 400, queue: true, complete: function() { $down.css('top', window.innerHeight + 'px') } });
+                $down.animate({ 'top' : (window.innerHeight - $down.height()) - 30 + 'px' }, { duration: 400, queue: true });
+                setTimeout(function() { done = true }, 850);
+                clearInterval(check);
+            }
+        }, 10);
+    }
+
+    function switchTo(el) {
+        var check = setInterval(function() {
+            if(done) {
+                done = false;
+                $header.children('.header_button_container').removeClass('selected').addClass('unselected');
+                $(el).addClass('selected').removeClass('unselected');
+                $('.content').animate({ 'opacity' : '0' }, { duration: 150, queue: true });
+                $('#' + el.getAttribute('name') + '-content').animate({ 'opacity' : '1' }, { duration: 150, queue: true });
+                setTimeout(function() { done = true }, 200);
+                clearInterval(check);
+            }
+        }, 10);
+    }
+
+    $(document).ready(function() {
+        create();
+        calculate();
     });
-    $header.appendTo(document.body);
-    $header.children(".header_button_containerf").addClass("unselected");
-    //$("#header_button_about").parent().addClass("selected").removeClass("unselected");
-    $header.children(".header_button_container").click(function() {
-        $header.children(".header_button_container").removeClass("selected").addClass("unselected");
-        $(this).addClass("selected").removeClass("unselected");
-    });
+    $(window).resize(calculate);
 
-    var $background = $("#background");
-    $background.setBounds(0, 0, window.innerWidth, window.innerHeight);
-
-    var $page = $("#page");
-    $page.setBounds(0, $header.height(), window.innerWidth, window.innerHeight - $header.height());
-    $page.centerContent(true, true);
-
-    var $backgroundPic = $("#background-pic");
-    $backgroundPic.setBounds(0, 0, window.innerWidth, window.innerHeight);
-
-    var $down = $("#down");
-    $down.width(window.innerWidth*0.03);
-    $down.css({
-        "position": "absolute",
-        "left": (window.innerWidth - $down.width())/2 + "px",
-        "top": (window.innerHeight - $down.height()) - 30 + "px"
-    })
-});
+})();
