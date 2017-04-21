@@ -29,7 +29,7 @@
 
 .header_button_container {
     position: absolute;
-    background-color: rgba(0, 255, 255, 0.12);
+    background-color: rgba(0, 255, 255, 0.08);
     -webkit-transition: all 400ms ease;
     transition: all 400ms ease;
 }
@@ -43,7 +43,7 @@
 }
 
 .header_button_container:hover {
-    background-color: rgba(0, 255, 255, 0.25);
+    background-color: rgba(0, 255, 255, 0.19);
 }
 
 .header_button > div > a {

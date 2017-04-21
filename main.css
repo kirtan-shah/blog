@@ -1,5 +1,7 @@
 * {
   position:absolute;
+  -webkit-user-select: none;
+  user-select: none;
 }
 body {
   margin: 0;
@@ -30,7 +32,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.15;
+    opacity: 0.12;
     -webkit-transition: 700ms opacity ease;
     transition: 700ms opacity ease;
     filter: blur(2px);
@@ -49,6 +51,7 @@ body {
 .content {
     position: absolute;
     opacity: 0;
+    border-radius: 7px;
 }
 
 #down {
@@ -74,7 +77,7 @@ body {
     */
     /*opacity: 0.9;*/
     font-weight: bold;
-    background-color: rgba(0, 255, 255, 0.25);
+    background-color: rgba(0, 255, 255, 0.19);
 }
 .selected div {
     margin-left: -1px;

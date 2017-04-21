@@ -4,7 +4,7 @@
     var $header;
     var options = {
         width: window.innerWidth,
-        height: window.innerHeight * 0.09,
+        height: window.innerHeight * 0.1,
         items: ['About', 'Projects', 'Programs', 'Blog']
     };
     var $down;
@@ -18,7 +18,13 @@
 
         //$('#header_button_about').parent().addClass('selected').removeClass('unselected');
         $header.children('.header_button_container').click(function() {
-            switchTo(this);
+            //switchTo(this);
+            var currentIndex = parseInt($('.selected').attr('index'));
+            var index = parseInt(this.getAttribute('index'));
+            if (index < currentIndex)
+                swipeLeftTo(this);
+            else if (currentIndex < index)
+                swipeRightTo(this);
         });
 
         $down = $('#down');
@@ -47,9 +53,11 @@
         $page.setBounds(0, $header.height(), window.innerWidth, window.innerHeight - $header.height());
         $page.centerContent(true, true);
 
+        var cw = 1.0*window.innerWidth;
         var $contentPages = $('.content');
-        $contentPages.setBounds(0, 0, window.innerWidth, window.innerHeight - $header.height());
+        $contentPages.setBounds((window.innerWidth - cw)/2, 0, cw, window.innerHeight - $header.height());
         $contentPages.centerContent(true, true);
+        //$page.centerContent(true, true);
 
         var $backgroundPic = $('#background-pic');
         $backgroundPic.setBounds(0, 0, window.innerWidth, window.innerHeight);
@@ -77,6 +85,48 @@
                     $contentPage.animate({ 'opacity' : '1' }, { duration: 700, queue: false });
                 }, 300);
                 $down.animate({ 'top' : $header.height() - $down.height() + 'px' }, { duration: 400, queue: true, complete: function() { $down.css('top', window.innerHeight + 'px') } });
+                $down.animate({ 'top' : (window.innerHeight - $down.height()) - 30 + 'px' }, { duration: 400, queue: true });
+                setTimeout(function() { done = true }, 850);
+                clearInterval(check);
+            }
+        }, 10);
+    }
+
+    function swipeLeftTo(el) {
+        var check = setInterval(function() {
+            if(done) {
+                done = false;
+                $header.children('.header_button_container').removeClass('selected').addClass('unselected');
+                $(el).addClass('selected').removeClass('unselected');
+                $('.content').animate({ 'opacity' : '-1', 'left' : window.innerWidth + 'px' }, { duration: 400, queue: false, complete: function() { $('.content').css('left', '0px'); } });
+                var $contentPage = $('#' + el.getAttribute('name') + '-content');
+                $contentPage.css('left', -window.innerWidth + 'px');
+                $contentPage.animate({ 'left' : '0px' }, { duration: 700, queue: false });
+                setTimeout(function() {
+                    $contentPage.animate({ 'opacity' : '1' }, { duration: 700, queue: false });
+                }, 300);
+                $down.animate({ 'top' : window.innerHeight + $down.height() + 'px' }, { duration: 400, queue: true, complete: function() { $down.css('top', window.innerHeight + 'px') } });
+                $down.animate({ 'top' : (window.innerHeight - $down.height()) - 30 + 'px' }, { duration: 400, queue: true });
+                setTimeout(function() { done = true }, 850);
+                clearInterval(check);
+            }
+        }, 10);
+    }
+
+    function swipeRightTo(el) {
+        var check = setInterval(function() {
+            if(done) {
+                done = false;
+                $header.children('.header_button_container').removeClass('selected').addClass('unselected');
+                $(el).addClass('selected').removeClass('unselected');
+                $('.content').animate({ 'opacity' : '-1', 'left' : -window.innerWidth + 'px' }, { duration: 400, queue: false, complete: function() { $('.content').css('left', '0px'); } });
+                var $contentPage = $('#' + el.getAttribute('name') + '-content');
+                $contentPage.css('left', window.innerWidth + 'px');
+                $contentPage.animate({ 'left' : '0px' }, { duration: 700, queue: false });
+                setTimeout(function() {
+                    $contentPage.animate({ 'opacity' : '1' }, { duration: 700, queue: false });
+                }, 300);
+                $down.animate({ 'top' : window.innerHeight + $down.height() + 'px' }, { duration: 400, queue: true, complete: function() { $down.css('top', window.innerHeight + 'px') } });
                 $down.animate({ 'top' : (window.innerHeight - $down.height()) - 30 + 'px' }, { duration: 400, queue: true });
                 setTimeout(function() { done = true }, 850);
                 clearInterval(check);
